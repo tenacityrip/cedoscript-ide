@@ -42,7 +42,7 @@ jobs:
     permissions:
       contents: write
     steps:
-      - uses: actions/download-artifact@v5
+      - uses: actions/download-artifact@v8
         with: { merge-multiple: true }
       - run: gh release create "$TAG" --repo "$REPO" --title "$TAG" --notes "See CHANGELOG.md." *.vsix *.zip
         env:
