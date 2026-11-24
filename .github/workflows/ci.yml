@@ -20,7 +20,7 @@ jobs:
       - run: node scripts/check.mjs
       - run: npm ci && npm run typecheck && npm test && npm run package
         working-directory: vscode
-      - uses: actions/upload-artifact@v4
+      - uses: actions/upload-artifact@v7
         with: { name: vscode, path: vscode/*.vsix }
 
   intellij:
@@ -32,7 +32,7 @@ jobs:
         with: { distribution: temurin, java-version: "21" }
       - run: ./gradlew --no-daemon test buildPlugin
         working-directory: intellij
-      - uses: actions/upload-artifact@v4
+      - uses: actions/upload-artifact@v7
         with: { name: intellij, path: intellij/build/distributions/*.zip }
 
   release:
