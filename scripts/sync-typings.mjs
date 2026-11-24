@@ -241,6 +241,7 @@ declare const Java: {
     type(name: "org.lwjgl.input.Keyboard"): Keyboard;
     type(name: "org.lwjgl.input.Mouse"): MouseBinding;
     type(name: "org.lwjgl.opengl.GL11" | "org.lwjgl.opengl.GL13" | "org.lwjgl.opengl.GL14"): GLBinding;
+    type(name: "org.lwjgl.opengl.GL20"): SafeGL20;
     type(name: "java.lang.Math"): Math;
     type(name: "java.util.Map" | "java.util.HashMap"): {
         new <K = any, V = any>(entries?: Iterable<readonly [K, V]>): HashMapLike<K, V>;
