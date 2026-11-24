@@ -1,0 +1,11 @@
+# cedoscript-ide
+
+> VS Code and JetBrains support for CedoScript, the JavaScript scripting of the Tenacity Minecraft client.
+
+- [README](README.md): features and install
+- [CLAUDE.md](CLAUDE.md): how the repository fits together
+- [Typings](typings/cedoscript.d.ts): every global, event and object
+- [Capabilities](typings/capabilities.json): which members need which capability
+- [VS Code extension](vscode/src/extension.ts)
+- [JetBrains plugin](intellij/src/main/resources/META-INF/plugin.xml)
+- [Scripting docs](https://tenacity.rip/docs)

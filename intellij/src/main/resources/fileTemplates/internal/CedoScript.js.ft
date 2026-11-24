@@ -1,0 +1,16 @@
+// ==Script==
+// @name        ${NAME}
+// @version     1.0
+// ==/Script==
+
+const script = initScript({
+    name: "${NAME}",
+    description: "What this script does",
+    author: "you"
+});
+
+const message = script.stringSetting("Message", "Hello");
+
+script.onEnable(() => {
+    client.printClientMsg(message.getString());
+});

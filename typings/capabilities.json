@@ -1,0 +1,47 @@
+{
+  "members": {
+    "packets": [
+      "packet.sendPacket",
+      "player.sendPacket",
+      "script.onPacketSend",
+      "script.onPacketReceive"
+    ],
+    "movement": [
+      "player.setPitch",
+      "player.setYaw",
+      "player.setMotionX",
+      "player.setMotionY",
+      "player.setMotionZ",
+      "player.setPosition",
+      "player.jump",
+      "player.setSpeed",
+      "player.setSneaking",
+      "player.setSprinting",
+      "player.setFallDistance",
+      "script.onMotion",
+      "script.onMove",
+      "script.onSafeWalk",
+      "world.setTimer"
+    ],
+    "chat": [
+      "player.sendMessage",
+      "script.onChatReceived",
+      "script.onPlayerSendMessage"
+    ]
+  },
+  "events": {
+    "movement": [
+      "motion",
+      "move",
+      "safewalk"
+    ],
+    "packets": [
+      "packetSend",
+      "packetReceive"
+    ],
+    "chat": [
+      "chat",
+      "playerMessage"
+    ]
+  }
+}

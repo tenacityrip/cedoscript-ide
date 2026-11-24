@@ -1,0 +1,91 @@
+{
+  "name": "cedoscript",
+  "displayName": "CedoScript",
+  "description": "Completion, checks and snippets for Tenacity scripts",
+  "version": "0.1.0",
+  "publisher": "tenacityrip",
+  "license": "MIT",
+  "private": true,
+  "type": "module",
+  "engines": {
+    "vscode": "^1.90.0"
+  },
+  "categories": [
+    "Snippets",
+    "Linters",
+    "Programming Languages"
+  ],
+  "keywords": [
+    "tenacity",
+    "cedoscript",
+    "minecraft",
+    "javascript"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/tenacityrip/cedoscript-ide.git",
+    "directory": "vscode"
+  },
+  "homepage": "https://tenacity.rip/docs",
+  "bugs": {
+    "url": "https://github.com/tenacityrip/cedoscript-ide/issues"
+  },
+  "activationEvents": [
+    "onLanguage:javascript"
+  ],
+  "main": "./dist/extension.cjs",
+  "capabilities": {
+    "untrustedWorkspaces": {
+      "supported": "limited",
+      "description": "Typings are not written to untrusted folders."
+    }
+  },
+  "contributes": {
+    "commands": [
+      {
+        "command": "cedoscript.newScript",
+        "title": "New Script",
+        "category": "CedoScript"
+      },
+      {
+        "command": "cedoscript.installTypings",
+        "title": "Install Typings",
+        "category": "CedoScript"
+      },
+      {
+        "command": "cedoscript.openDocs",
+        "title": "Open Docs",
+        "category": "CedoScript"
+      }
+    ],
+    "configuration": {
+      "title": "CedoScript",
+      "properties": {
+        "cedoscript.autoInstallTypings": {
+          "type": "boolean",
+          "default": true,
+          "description": "Write the typings and a jsconfig.json into the folder when a script that calls initScript is opened."
+        }
+      }
+    },
+    "snippets": [
+      {
+        "language": "javascript",
+        "path": "./snippets/cedoscript.code-snippets"
+      }
+    ]
+  },
+  "scripts": {
+    "build": "node build.mjs",
+    "typecheck": "tsc --noEmit",
+    "test": "node build.mjs --test && node --test \"dist/test/*.test.cjs\" && tsc -p ../tests",
+    "package": "npm run build && vsce package --no-dependencies --skip-license"
+  },
+  "devDependencies": {
+    "@types/node": "^22.20.5",
+    "@types/vscode": "1.90.0",
+    "@vscode/vsce": "^3.9.2",
+    "esbuild": "^0.28.2",
+    "typescript": "^5.9.3"
+  }
+}

@@ -1,0 +1,108 @@
+{
+  "CedoScript: script": {
+    "prefix": "cedo",
+    "body": [
+      "const script = initScript({",
+      "    name: \"${1:My Script}\",",
+      "    description: \"${2:What it does}\",",
+      "    author: \"${3:you}\"",
+      "});",
+      "",
+      "$0"
+    ],
+    "description": "script"
+  },
+  "CedoScript: header": {
+    "prefix": "cedoheader",
+    "body": [
+      "// ==Script==",
+      "// @name        ${1:My Script}",
+      "// @version     1.0",
+      "// @capability  ${2|movement,packets,chat|}",
+      "// ==/Script==",
+      "$0"
+    ],
+    "description": "header"
+  },
+  "CedoScript: Render 2D": {
+    "prefix": "cedorender",
+    "body": [
+      "script.onRender2D((event) => {",
+      "    $0",
+      "});"
+    ],
+    "description": "Render 2D"
+  },
+  "CedoScript: tick": {
+    "prefix": "cedotick",
+    "body": [
+      "script.onTick(() => {",
+      "    $0",
+      "});"
+    ],
+    "description": "tick"
+  },
+  "CedoScript: motion (needs movement)": {
+    "prefix": "cedomotion",
+    "body": [
+      "script.onMotion((event) => {",
+      "    if (!event.isPre()) return;",
+      "    $0",
+      "});"
+    ],
+    "description": "motion (needs movement)"
+  },
+  "CedoScript: packet send (needs packets)": {
+    "prefix": "cedopacket",
+    "body": [
+      "script.onPacketSend((event) => {",
+      "    if (event.getPacketID() === packet.${1:C03PacketPlayer}) {",
+      "        $0",
+      "    }",
+      "});"
+    ],
+    "description": "packet send (needs packets)"
+  },
+  "CedoScript: number setting": {
+    "prefix": "cedonumber",
+    "body": [
+      "const ${1:speed} = script.numberSetting(\"${2:Speed}\", ${3:1}, ${4:0}, ${5:10}, ${6:0.1});"
+    ],
+    "description": "number setting"
+  },
+  "CedoScript: boolean setting": {
+    "prefix": "cedobool",
+    "body": [
+      "const ${1:flag} = script.booleanSetting(\"${2:Flag}\", ${3|true,false|});"
+    ],
+    "description": "boolean setting"
+  },
+  "CedoScript: mode setting": {
+    "prefix": "cedomode",
+    "body": [
+      "const ${1:mode} = script.modeSetting(\"${2:Mode}\", \"${3:One}\", [\"${3:One}\", \"${4:Two}\"]);"
+    ],
+    "description": "mode setting"
+  },
+  "CedoScript: color setting": {
+    "prefix": "cedocolor",
+    "body": [
+      "const ${1:tint} = script.colorSetting(\"${2:Tint}\", color({ red: ${3:255}, green: ${4:255}, blue: ${5:255} }));"
+    ],
+    "description": "color setting"
+  },
+  "CedoScript: drag": {
+    "prefix": "cedodrag",
+    "body": [
+      "const ${1:drag} = createDrag({ initialX: ${2:100}, initialY: ${3:100} });"
+    ],
+    "description": "drag"
+  },
+  "CedoScript: notification": {
+    "prefix": "cedonotify",
+    "body": [
+      "notification.post(notification.${1|success,info,warning,disable|}, \"${2:Title}\", \"${3:Text}\");"
+    ],
+    "description": "notification"
+  }
+}

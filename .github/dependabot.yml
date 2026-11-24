@@ -1,0 +1,13 @@
+version: 2
+updates:
+  - package-ecosystem: github-actions
+    directory: /
+    schedule: { interval: monthly }
+  - package-ecosystem: npm
+    directory: /vscode
+    schedule: { interval: monthly }
+    ignore:
+      - dependency-name: "@types/vscode"
+  - package-ecosystem: gradle
+    directory: /intellij
+    schedule: { interval: monthly }

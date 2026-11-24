@@ -1,0 +1,33 @@
+<idea-plugin>
+  <id>rip.tenacity.cedoscript</id>
+  <name>CedoScript</name>
+  <vendor url="https://tenacity.rip">Tenacity</vendor>
+  <description><![CDATA[
+    <p>Support for <a href="https://tenacity.rip/docs">CedoScript</a>, the JavaScript scripting of Tenacity:</p>
+    <ul>
+      <li>typings for completion and quick documentation (IDEs with JavaScript support)</li>
+      <li>a check for API that needs a capability the script header does not request, with a fix</li>
+      <li>a new-script action and live templates</li>
+    </ul>
+  ]]></description>
+  <depends>com.intellij.modules.platform</depends>
+  <depends>com.intellij.modules.lang</depends>
+  <extensions defaultExtensionNs="com.intellij">
+    <internalFileTemplate name="CedoScript"/>
+    <defaultLiveTemplates file="/liveTemplates/CedoScript.xml"/>
+    <notificationGroup id="CedoScript" displayType="BALLOON"/>
+    <localInspection implementationClass="rip.tenacity.cedoscript.CapabilityInspection"
+                     shortName="CedoscriptCapability" displayName="Missing script capability" groupName="CedoScript"
+                     enabledByDefault="true" level="WARNING"/>
+  </extensions>
+  <actions>
+    <action id="CedoScript.New" class="rip.tenacity.cedoscript.NewScriptAction" text="CedoScript"
+            description="Create a Tenacity script">
+      <add-to-group group-id="NewGroup" anchor="after" relative-to-action="NewFile"/>
+    </action>
+    <action id="CedoScript.InstallTypings" class="rip.tenacity.cedoscript.InstallTypingsAction"
+            text="Install CedoScript Typings" description="Write the CedoScript typings into this project">
+      <add-to-group group-id="ToolsMenu" anchor="last"/>
+    </action>
+  </actions>
+</idea-plugin>

@@ -1,0 +1,104 @@
+<templateSet group="CedoScript">
+  <template name="cedo" value='const script = initScript({&#10;    name: "$V1$",&#10;    description: "$V2$",&#10;    author: "$V3$"&#10;});&#10;&#10;$END$' description="script" toReformat="false" toShortenFQNames="false">
+    <variable name="V1" expression="" defaultValue='"My Script"' alwaysStopAt="true"/>
+    <variable name="V2" expression="" defaultValue='"What it does"' alwaysStopAt="true"/>
+    <variable name="V3" expression="" defaultValue='"you"' alwaysStopAt="true"/>
+    <context>
+      <option name="OTHER" value="true"/>
+      <option name="JS_STATEMENT" value="true"/>
+    </context>
+  </template>
+  <template name="cedoheader" value="// ==Script==&#10;// @name        $V1$&#10;// @version     1.0&#10;// @capability  $V2$&#10;// ==/Script==&#10;$END$" description="header" toReformat="false" toShortenFQNames="false">
+    <variable name="V1" expression="" defaultValue='"My Script"' alwaysStopAt="true"/>
+    <variable name="V2" expression="" defaultValue='"movement"' alwaysStopAt="true"/>
+    <context>
+      <option name="OTHER" value="true"/>
+      <option name="JS_STATEMENT" value="true"/>
+    </context>
+  </template>
+  <template name="cedorender" value="script.onRender2D((event) =&gt; {&#10;    $END$&#10;});" description="Render 2D" toReformat="false" toShortenFQNames="false">
+    <context>
+      <option name="OTHER" value="true"/>
+      <option name="JS_STATEMENT" value="true"/>
+    </context>
+  </template>
+  <template name="cedotick" value="script.onTick(() =&gt; {&#10;    $END$&#10;});" description="tick" toReformat="false" toShortenFQNames="false">
+    <context>
+      <option name="OTHER" value="true"/>
+      <option name="JS_STATEMENT" value="true"/>
+    </context>
+  </template>
+  <template name="cedomotion" value="script.onMotion((event) =&gt; {&#10;    if (!event.isPre()) return;&#10;    $END$&#10;});" description="motion (needs movement)" toReformat="false" toShortenFQNames="false">
+    <context>
+      <option name="OTHER" value="true"/>
+      <option name="JS_STATEMENT" value="true"/>
+    </context>
+  </template>
+  <template name="cedopacket" value="script.onPacketSend((event) =&gt; {&#10;    if (event.getPacketID() === packet.$V1$) {&#10;        $END$&#10;    }&#10;});" description="packet send (needs packets)" toReformat="false" toShortenFQNames="false">
+    <variable name="V1" expression="" defaultValue='"C03PacketPlayer"' alwaysStopAt="true"/>
+    <context>
+      <option name="OTHER" value="true"/>
+      <option name="JS_STATEMENT" value="true"/>
+    </context>
+  </template>
+  <template name="cedonumber" value='const $V1$ = script.numberSetting("$V2$", $V3$, $V4$, $V5$, $V6$);' description="number setting" toReformat="false" toShortenFQNames="false">
+    <variable name="V1" expression="" defaultValue='"speed"' alwaysStopAt="true"/>
+    <variable name="V2" expression="" defaultValue='"Speed"' alwaysStopAt="true"/>
+    <variable name="V3" expression="" defaultValue='"1"' alwaysStopAt="true"/>
+    <variable name="V4" expression="" defaultValue='"0"' alwaysStopAt="true"/>
+    <variable name="V5" expression="" defaultValue='"10"' alwaysStopAt="true"/>
+    <variable name="V6" expression="" defaultValue='"0.1"' alwaysStopAt="true"/>
+    <context>
+      <option name="OTHER" value="true"/>
+      <option name="JS_STATEMENT" value="true"/>
+    </context>
+  </template>
+  <template name="cedobool" value='const $V1$ = script.booleanSetting("$V2$", $V3$);' description="boolean setting" toReformat="false" toShortenFQNames="false">
+    <variable name="V1" expression="" defaultValue='"flag"' alwaysStopAt="true"/>
+    <variable name="V2" expression="" defaultValue='"Flag"' alwaysStopAt="true"/>
+    <variable name="V3" expression="" defaultValue='"true"' alwaysStopAt="true"/>
+    <context>
+      <option name="OTHER" value="true"/>
+      <option name="JS_STATEMENT" value="true"/>
+    </context>
+  </template>
+  <template name="cedomode" value='const $V1$ = script.modeSetting("$V2$", "$V3$", ["$V3$", "$V4$"]);' description="mode setting" toReformat="false" toShortenFQNames="false">
+    <variable name="V1" expression="" defaultValue='"mode"' alwaysStopAt="true"/>
+    <variable name="V2" expression="" defaultValue='"Mode"' alwaysStopAt="true"/>
+    <variable name="V3" expression="" defaultValue='"One"' alwaysStopAt="true"/>
+    <variable name="V4" expression="" defaultValue='"Two"' alwaysStopAt="true"/>
+    <context>
+      <option name="OTHER" value="true"/>
+      <option name="JS_STATEMENT" value="true"/>
+    </context>
+  </template>
+  <template name="cedocolor" value='const $V1$ = script.colorSetting("$V2$", color({ red: $V3$, green: $V4$, blue: $V5$ }));' description="color setting" toReformat="false" toShortenFQNames="false">
+    <variable name="V1" expression="" defaultValue='"tint"' alwaysStopAt="true"/>
+    <variable name="V2" expression="" defaultValue='"Tint"' alwaysStopAt="true"/>
+    <variable name="V3" expression="" defaultValue='"255"' alwaysStopAt="true"/>
+    <variable name="V4" expression="" defaultValue='"255"' alwaysStopAt="true"/>
+    <variable name="V5" expression="" defaultValue='"255"' alwaysStopAt="true"/>
+    <context>
+      <option name="OTHER" value="true"/>
+      <option name="JS_STATEMENT" value="true"/>
+    </context>
+  </template>
+  <template name="cedodrag" value="const $V1$ = createDrag({ initialX: $V2$, initialY: $V3$ });" description="drag" toReformat="false" toShortenFQNames="false">
+    <variable name="V1" expression="" defaultValue='"drag"' alwaysStopAt="true"/>
+    <variable name="V2" expression="" defaultValue='"100"' alwaysStopAt="true"/>
+    <variable name="V3" expression="" defaultValue='"100"' alwaysStopAt="true"/>
+    <context>
+      <option name="OTHER" value="true"/>
+      <option name="JS_STATEMENT" value="true"/>
+    </context>
+  </template>
+  <template name="cedonotify" value='notification.post(notification.$V1$, "$V2$", "$V3$");' description="notification" toReformat="false" toShortenFQNames="false">
+    <variable name="V1" expression="" defaultValue='"success"' alwaysStopAt="true"/>
+    <variable name="V2" expression="" defaultValue='"Title"' alwaysStopAt="true"/>
+    <variable name="V3" expression="" defaultValue='"Text"' alwaysStopAt="true"/>
+    <context>
+      <option name="OTHER" value="true"/>
+      <option name="JS_STATEMENT" value="true"/>
+    </context>
+  </template>
+</templateSet>
