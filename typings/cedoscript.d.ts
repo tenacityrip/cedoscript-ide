@@ -970,6 +970,87 @@ interface RenderModelEvent {
 }
 
 /**
+ * GL20 shaders, limited to objects the script made itself. Reach it with `Java.type`.
+ */
+interface SafeGL20 {
+    readonly GL_FRAGMENT_SHADER: number;
+    readonly GL_VERTEX_SHADER: number;
+    readonly GL_COMPILE_STATUS: number;
+    readonly GL_LINK_STATUS: number;
+    readonly GL_POINTS: number;
+    readonly GL_LINES: number;
+    readonly GL_LINE_LOOP: number;
+    readonly GL_LINE_STRIP: number;
+    readonly GL_TRIANGLES: number;
+    readonly GL_TRIANGLE_STRIP: number;
+    readonly GL_TRIANGLE_FAN: number;
+    glCreateShader(type: number): number;
+    /**
+     * GLSL 4.10 core, without extensions.
+     */
+    glShaderSource(shader: number, source: string): void;
+    glCompileShader(shader: number): void;
+    /**
+     * Answers `GL_COMPILE_STATUS`: 1 or 0.
+     */
+    glGetShaderi(shader: number, status: number): number;
+    glGetShaderInfoLog(shader: number): string;
+    glGetShaderInfoLog(shader: number, maxLength: number): string;
+    /**
+     * Deletes and detaches the shader. Linked programs keep working.
+     */
+    glDeleteShader(shader: number): void;
+    glCreateProgram(): number;
+    glAttachShader(program: number, shader: number): void;
+    glDetachShader(program: number, shader: number): void;
+    /**
+     * Without a vertex shader the program fills the viewport and passes `v_uv`.
+     */
+    glLinkProgram(program: number): void;
+    /**
+     * Answers `GL_LINK_STATUS`: 1 or 0.
+     */
+    glGetProgrami(program: number, status: number): number;
+    glGetProgramInfoLog(program: number): string;
+    glGetProgramInfoLog(program: number, maxLength: number): string;
+    glDeleteProgram(program: number): void;
+    /**
+     * Picks the program for this script's uniforms and `glDrawArrays`. Other drawing is not affected.
+     */
+    glUseProgram(program: number): void;
+    /**
+     * The location, or -1 if the linked program has no such uniform.
+     */
+    glGetUniformLocation(program: number, name: string): number;
+    glUniform1f(location: number, x: number): void;
+    glUniform2f(location: number, x: number, y: number): void;
+    glUniform3f(location: number, x: number, y: number, z: number): void;
+    glUniform4f(location: number, x: number, y: number, z: number, w: number): void;
+    glUniform1i(location: number, x: number): void;
+    glUniform2i(location: number, x: number, y: number): void;
+    glUniform3i(location: number, x: number, y: number, z: number): void;
+    glUniform4i(location: number, x: number, y: number, z: number, w: number): void;
+    /**
+     * Takes an array of 4 numbers.
+     */
+    glUniformMatrix2(location: number, transpose: boolean, values: number[]): void;
+    /**
+     * Takes an array of 9 numbers.
+     */
+    glUniformMatrix3(location: number, transpose: boolean, values: number[]): void;
+    /**
+     * Takes an array of 16 numbers.
+     */
+    glUniformMatrix4(location: number, transpose: boolean, values: number[]): void;
+    /**
+     * Draws with the program in use. There are no vertex buffers: place vertices from `gl_VertexID`.
+     */
+    glDrawArrays(mode: number, first: number, count: number): void;
+}
+
+declare const gl20: SafeGL20;
+
+/**
  * Whether the player is kept from walking off edges this tick.
  */
 interface SafeWalkEvent {
@@ -1247,6 +1328,7 @@ declare const Java: {
     type(name: "org.lwjgl.input.Keyboard"): Keyboard;
     type(name: "org.lwjgl.input.Mouse"): MouseBinding;
     type(name: "org.lwjgl.opengl.GL11" | "org.lwjgl.opengl.GL13" | "org.lwjgl.opengl.GL14"): GLBinding;
+    type(name: "org.lwjgl.opengl.GL20"): SafeGL20;
     type(name: "java.lang.Math"): Math;
     type(name: "java.util.Map" | "java.util.HashMap"): {
         new <K = any, V = any>(entries?: Iterable<readonly [K, V]>): HashMapLike<K, V>;

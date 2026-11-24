@@ -2,7 +2,7 @@
   "name": "cedoscript",
   "displayName": "CedoScript",
   "description": "Completion, checks and snippets for Tenacity scripts",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "publisher": "tenacityrip",
   "license": "MIT",
   "private": true,
