@@ -8,6 +8,11 @@ updates:
     schedule: { interval: monthly }
     ignore:
       - dependency-name: "@types/vscode"
+      - dependency-name: "*"
+        update-types: ["version-update:semver-major"]
   - package-ecosystem: gradle
     directory: /intellij
     schedule: { interval: monthly }
+    ignore:
+      - dependency-name: "*"
+        update-types: ["version-update:semver-major"]
