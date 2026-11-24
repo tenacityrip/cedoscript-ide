@@ -95,6 +95,13 @@ interface ClientBinding {
      * The two current client colors.
      */
     getClientColors(): Pair<Color, Color>;
+    /**
+     * Network usernames of the players in the tab list, by Minecraft name. Only players whose account the server
+     * verified are in it; empty when not connected to the network.
+     *
+     * @returns the usernames
+     */
+    getIRCUsernameMap(): Record<string, string>;
     getClientVersion(): string;
     /**
      * The module with this name, ignoring case, or null.
